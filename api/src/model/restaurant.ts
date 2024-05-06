@@ -1,8 +1,14 @@
-import { DataTypes, Model } from "sequelize";
-import {sequelize} from "../data/connectionSqlServer";
+import { DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional} from "sequelize";
+import { sequelize } from "../data/connectionSqlServer";
 import Address from "./address";
 
-class Restaurant extends Model {}
+class Restaurant
+  extends Model<InferAttributes<Restaurant>, InferCreationAttributes<Restaurant>>{
+    declare id: CreationOptional<number>;
+    declare name: string;
+    declare typeCousine: string;
+    declare schedule: string;
+  }
 
 Restaurant.init(
   {
@@ -28,11 +34,11 @@ Restaurant.init(
   {
     sequelize,
     modelName: "Restaurant",
+    timestamps: true
   }
 );
 
-
-Restaurant.hasOne(Address);
-Address.belongsTo(Restaurant);
+Restaurant.hasOne(Address, {sourceKey: "id"});
+Address.belongsTo(Restaurant, {targetKey: "id"});
 
 export default Restaurant;

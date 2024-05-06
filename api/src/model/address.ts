@@ -1,7 +1,17 @@
-import { DataTypes, Model } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 import {sequelize }from "../data/connectionSqlServer";
+import Restaurant from "./restaurant";
 
-class Address extends Model {}
+class Address extends Model<InferAttributes<Address>, InferCreationAttributes<Address>> {
+  declare id: CreationOptional<number>;
+  declare country: string;
+  declare city: string;
+  declare address: string;
+  declare telephone: string;
+  declare emailSupport: string;
+
+  declare restaurantId: ForeignKey<Restaurant["id"]>
+}
 
 Address.init(
   {
