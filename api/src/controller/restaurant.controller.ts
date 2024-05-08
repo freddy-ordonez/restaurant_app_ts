@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import RestaurantModel from "../model/restaurant";
 import Address from "../model/address";
-import { Restaurant } from "../interfaces/restaurant";
+import { Result, matchedData, validationResult } from "express-validator";
 
 export const getRestaurants = async (req: Request, res: Response) => {
   try {
@@ -13,8 +13,8 @@ export const getRestaurants = async (req: Request, res: Response) => {
 };
 
 export const getRestaurant = async (req: Request, res: Response) => {
- 
-  if (isNaN(parseInt(req.params.id))) return res.status(400).send({ message: "Bad Request" });
+  if (isNaN(parseInt(req.params.id)))
+    return res.status(400).send({ message: "Bad Request" });
 
   const idRestaurant = req.params.id;
 
@@ -31,7 +31,8 @@ export const getRestaurant = async (req: Request, res: Response) => {
 };
 
 export const getRestaurantAddress = async (req: Request, res: Response) => {
-  if (isNaN(parseInt(req.params.id))) return res.status(400).send({ message: "Bad Request" });
+  if (isNaN(parseInt(req.params.id)))
+    return res.status(400).send({ message: "Bad Request" });
 
   const restaurantId = req.params.id;
 
@@ -48,7 +49,12 @@ export const getRestaurantAddress = async (req: Request, res: Response) => {
 };
 
 export const addRestaurant = async (req: Request, res: Response) => {
-  const {name, typeCousine, schedule} = req.body;
+  const validationSchema: Result = validationResult(req);
+
+  if (!validationSchema.isEmpty())
+    return res.status(400).send(validationSchema.array());
+
+  const { name, typeCousine, schedule } = matchedData(req);
 
   try {
     const newRestaurant = await RestaurantModel.create({
@@ -60,16 +66,22 @@ export const addRestaurant = async (req: Request, res: Response) => {
     return res.status(201).json(newRestaurant);
   } catch (error) {
     console.log(error);
-    
+
     return res.status(500).send({ message: error });
   }
 };
 
 export const updateRestaurant = async (req: Request, res: Response) => {
-  if (isNaN(parseInt(req.params.id))) return res.status(400).send({ message: "Bad Request" });
+  if (isNaN(parseInt(req.params.id)))
+    return res.status(400).send({ message: "Bad Request" });
 
+  const validationSchema: Result = validationResult(req);
+
+  if (!validationSchema.isEmpty())
+    return res.status(400).send(validationSchema.array());
+
+  const { name, typeCousine, schedule } = matchedData(req);
   const idRestaurant = req.params.id;
-  const restaurantBody: Restaurant = req.body;
 
   try {
     const restaurant = await RestaurantModel.findOne({
@@ -80,9 +92,9 @@ export const updateRestaurant = async (req: Request, res: Response) => {
 
     if (!restaurant) return res.status(404).send({ message: "Not found" });
 
-    restaurant.name = restaurantBody.name;
-    restaurant.typeCousine = restaurantBody.typeCousine;
-    restaurant.schedule = restaurantBody.schedule;
+    restaurant.name = name;
+    restaurant.typeCousine = typeCousine;
+    restaurant.schedule = schedule;
 
     await restaurant.save();
 
@@ -93,7 +105,8 @@ export const updateRestaurant = async (req: Request, res: Response) => {
 };
 
 export const deleteRestaurant = async (req: Request, res: Response) => {
-  if (isNaN(parseInt(req.params.id))) return res.status(400).send({ message: "Bad Request" });
+  if (isNaN(parseInt(req.params.id)))
+    return res.status(400).send({ message: "Bad Request" });
 
   const idRestaurant = req.params.id;
 
@@ -108,4 +121,3 @@ export const deleteRestaurant = async (req: Request, res: Response) => {
     return res.status(500).send({ message: error });
   }
 };
-
