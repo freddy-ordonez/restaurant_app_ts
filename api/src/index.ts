@@ -6,6 +6,7 @@ import './model/address'
 
 //Routes
 import restaurantRoutes from './routes/restaurant.routes';
+import addressRoutes from './routes/address.routes';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use("/api", apiRouter)
 apiRouter.use(express.json())
 
 apiRouter.use(restaurantRoutes)
+apiRouter.use(addressRoutes)
 
 const connection = async () => {
     try {

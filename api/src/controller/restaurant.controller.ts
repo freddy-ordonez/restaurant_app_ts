@@ -37,11 +37,12 @@ export const getRestaurantAddress = async (req: Request, res: Response) => {
   const restaurantId = req.params.id;
 
   try {
-    const address = await Address.findAll({
+    const address = await Address.findOne({
       where: {
         restaurantId: restaurantId,
       },
     });
+    if(!address) return res.status(404).send({message: "Not Found"})
     return res.status(200).json(address);
   } catch (error) {
     return res.status(500).send({ message: error });
@@ -62,7 +63,6 @@ export const addRestaurant = async (req: Request, res: Response) => {
       typeCousine,
       schedule,
     });
-
     return res.status(201).json(newRestaurant);
   } catch (error) {
     console.log(error);

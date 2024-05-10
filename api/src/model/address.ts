@@ -1,9 +1,10 @@
-import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "sequelize";
 import {sequelize }from "../data/connectionSqlServer";
 import Restaurant from "./restaurant";
 
 class Address extends Model<InferAttributes<Address>, InferCreationAttributes<Address>> {
-  declare id: CreationOptional<number>;
+
+  declare id: CreationOptional<Number>;
   declare country: string;
   declare city: string;
   declare address: string;
@@ -11,6 +12,8 @@ class Address extends Model<InferAttributes<Address>, InferCreationAttributes<Ad
   declare emailSupport: string;
 
   declare restaurantId: ForeignKey<Restaurant["id"]>
+
+  declare restaurant: NonAttribute<Restaurant>
 }
 
 Address.init(
@@ -41,6 +44,16 @@ Address.init(
       allowNull: false,
       unique: true,
     },
+    restaurantId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      onDelete: "CASCADE",
+      references: {
+        model: Restaurant,
+        key: "id"
+      }
+    }
   },
   {
     sequelize,
