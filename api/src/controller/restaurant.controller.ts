@@ -72,6 +72,7 @@ export const addRestaurant = async (req: Request, res: Response) => {
 };
 
 export const updateRestaurant = async (req: Request, res: Response) => {
+  
   if (isNaN(parseInt(req.params.id)))
     return res.status(400).send({ message: "Bad Request" });
 
@@ -105,17 +106,21 @@ export const updateRestaurant = async (req: Request, res: Response) => {
 };
 
 export const deleteRestaurant = async (req: Request, res: Response) => {
+
   if (isNaN(parseInt(req.params.id)))
     return res.status(400).send({ message: "Bad Request" });
 
   const idRestaurant = req.params.id;
 
   try {
-    await RestaurantModel.destroy({
+    const deleteRestaurant = await RestaurantModel.destroy({
       where: {
         id: idRestaurant,
       },
     });
+
+    if(deleteRestaurant === 0) return res.status(404).send({message: "Not found"})
+    
     return res.sendStatus(204);
   } catch (error) {
     return res.status(500).send({ message: error });
