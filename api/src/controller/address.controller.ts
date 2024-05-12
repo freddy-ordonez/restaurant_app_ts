@@ -16,7 +16,7 @@ export const getOneAddress = async (req: Request, res: Response) => {
     const findAddress = await Address.findOne({
       where: {
         id: id,
-      },
+      }
     });
     if (!findAddress) return res.status(404).send({ message: "Not Found" });
     return res.status(200).json(findAddress);

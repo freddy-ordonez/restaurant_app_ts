@@ -33,8 +33,7 @@ Product.init({
     },
     name: {
         type: DataTypes.STRING(25),
-        allowNull: false,
-        unique: true
+        allowNull: false
     },
     description: {
         type: DataTypes.STRING(100),
@@ -54,3 +53,4 @@ Product.init({
         }
     }
 }, { sequelize, modelName: "Product" });
+
