@@ -13,9 +13,6 @@ export const getRestaurants = async (req: Request, res: Response) => {
 };
 
 export const getRestaurant = async (req: Request, res: Response) => {
-  const isIdValid = validationResult(req)
-  if (!isIdValid.isEmpty())
-    return res.status(400).send({ message: isIdValid.array() });
 
   const {id: idRestaurant} = matchedData(req);
 
@@ -32,9 +29,6 @@ export const getRestaurant = async (req: Request, res: Response) => {
 };
 
 export const getRestaurantAddress = async (req: Request, res: Response) => {
-  const isIdValid = validationResult(req)
-  if (!isIdValid.isEmpty())
-    return res.status(400).send({ message: isIdValid.array() });
 
   const {id:restaurantId} = matchedData(req);
 
@@ -52,10 +46,6 @@ export const getRestaurantAddress = async (req: Request, res: Response) => {
 };
 
 export const addRestaurant = async (req: Request, res: Response) => {
-  const validationSchema: Result = validationResult(req);
-
-  if (!validationSchema.isEmpty())
-    return res.status(400).send(validationSchema.array());
 
   const { name, typeCousine, schedule } = matchedData(req);
 
@@ -74,9 +64,6 @@ export const addRestaurant = async (req: Request, res: Response) => {
 };
 
 export const updateRestaurant = async (req: Request, res: Response) => {
-  const isSchemaValid = validationResult(req)
-  if (!isSchemaValid.isEmpty())
-    return res.status(400).send({ message: isSchemaValid.array()});
 
   const { name, typeCousine, schedule, id: idRestaurant } = matchedData(req);
 
@@ -102,9 +89,6 @@ export const updateRestaurant = async (req: Request, res: Response) => {
 };
 
 export const deleteRestaurant = async (req: Request, res: Response) => {
-  const isIdValid = validationResult(req);
-  if (!isIdValid.isEmpty())
-    return res.status(400).send({ message: isIdValid.array()});
 
   const {id: restaurantId} = matchedData(req);
 

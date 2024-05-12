@@ -9,9 +9,6 @@ export const getAddress = async (req: Request, res: Response) => {
 };
 
 export const getOneAddress = async (req: Request, res: Response) => {
-  const isIdValid = validationResult(req);
-  if (!isIdValid.isEmpty())
-    return res.status(404).send({ mesage: isIdValid.array() });
 
   const { id } = matchedData(req);
 
@@ -29,9 +26,7 @@ export const getOneAddress = async (req: Request, res: Response) => {
 };
 
 export const addAddress = async (req: Request, res: Response) => {
-  const isValidSchema = validationResult(req);
-  if (!isValidSchema.isEmpty())
-    return res.status(400).send({ message: isValidSchema.array() });
+
   const { country, city, address, telephone, emailSupport, restaurantId } =
     matchedData(req);
   try {
@@ -58,19 +53,14 @@ export const addAddress = async (req: Request, res: Response) => {
 };
 
 export const updateAddress = async (req: Request, res: Response) => {
-  const schemaIsValid = validationResult(req);
-  if (!schemaIsValid.isEmpty())
-    return res.status(400).send({ message: schemaIsValid.array() });
-  if (isNaN(parseInt(req.params.id)))
-    return res.status(404).send({ mesage: "Bad Request" });
 
-  const { id, country, city, address, telephone, emailSupport } =
+  const { id: idAddress, country, city, address, telephone, emailSupport } =
     matchedData(req);
 
   try {
     const findAddress = await Address.findOne({
       where: {
-        id: id,
+        id: idAddress,
       },
     });
     if (!findAddress) return res.status(404).send({ message: "Not Found" });
@@ -90,18 +80,13 @@ export const updateAddress = async (req: Request, res: Response) => {
 };
 
 export const deleteAddress = async (req: Request, res: Response) => {
-  const isIdValid = validationResult(req);
-  if (!isIdValid.isEmpty())
-    return res.status(404).send({
-      mesage: isIdValid.array(),
-    });
 
-  const addressId = req.params.id;
+  const {id: idAddress} = matchedData(req);
 
   try {
     const deleteAddres = await Address.destroy({
       where: {
-        id: addressId,
+        id: idAddress,
       },
     });
     if (deleteAddres === 0)
