@@ -12,6 +12,7 @@ import "./model/product"
 //Routes
 import restaurantRoutes from './routes/restaurant.routes';
 import addressRoutes from './routes/address.routes';
+import productRoutes from './routes/product.routes';
 
 const app = express();
 
@@ -25,10 +26,11 @@ apiRouter.use(express.json())
 
 apiRouter.use(restaurantRoutes)
 apiRouter.use(addressRoutes)
+apiRouter.use(productRoutes)
 
 const connection = async () => {
     try {
-      await sequelize.sync({force: true});
+      await sequelize.sync();
       console.log("Connection has benn successfully");
     } catch (error) {
       console.error("Unable to connect to the database", error);

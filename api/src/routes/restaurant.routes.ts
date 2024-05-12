@@ -14,7 +14,7 @@ const router = Router();
 
 router.get("/restaurants", getRestaurants);
 router.get("/restaurants/:id",idRestaurantSchema,validacionSchemas, getRestaurant);
-router.get("/restaurants/:id/address", idRestaurantSchema, getRestaurantAddress);
+router.get("/restaurants/:id/addresses", idRestaurantSchema, getRestaurantAddress);
 
 router.post("/restaurants",addRestaurantSchema, validacionSchemas, addRestaurant);
 

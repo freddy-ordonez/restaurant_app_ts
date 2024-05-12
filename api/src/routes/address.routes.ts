@@ -5,13 +5,13 @@ import { validacionSchemas } from '../middleware/middleware';
 
 const router = Router()
 
-router.get("/address", getAddress)
-router.get("/address/:id",idAddressSchema,validacionSchemas, getOneAddress)
+router.get("/addresses", getAddress)
+router.get("/addresses/:id",idAddressSchema,validacionSchemas, getOneAddress)
 
-router.post('/address', addAddressSchema,validacionSchemas, addAddress)
+router.post('/addresses', addAddressSchema,validacionSchemas, addAddress)
 
-router.put('/address/:id',updateAddressSchema,validacionSchemas, updateAddress)
-router.delete("/address/:id", idAddressSchema,validacionSchemas, deleteAddress)
+router.put('/addresses/:id',updateAddressSchema,validacionSchemas, updateAddress)
+router.delete("/addresses/:id", idAddressSchema,validacionSchemas, deleteAddress)
 
 export default router;
 

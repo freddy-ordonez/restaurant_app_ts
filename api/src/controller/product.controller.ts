@@ -45,12 +45,16 @@ export const addProduct = async (req: Request, res: Response) => {
 };
 
 export const updateProduct = async (req: Request, res: Response) => {
-  const { name, description, price, id: idRestaurant } = matchedData(req);
-
+  const { name, description, price, id: idProduct } = matchedData(req);
+  console.log(name);
+  
   try {
     const findProduct = await Product.findOne({
-      where: idRestaurant,
+      where: {
+        id: idProduct,
+      },
     });
+
     if (!findProduct) return res.status(404).send({ message: "Not Found" });
     findProduct.name = name;
     findProduct.description = description;

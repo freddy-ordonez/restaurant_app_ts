@@ -67,6 +67,24 @@ export const updateProductSchema = checkSchema({
             errorMessage: "id must be number"
         }
     },
+    name: {
+        in:['body'],
+        exists: {
+            errorMessage: "name is required"
+        },
+        isLength: {
+            options: {
+                max:25
+            },
+            errorMessage: "name max 25 characters"
+        },
+        isString: {
+            errorMessage: 'name must be in string'
+        },
+        notEmpty: {
+            errorMessage: 'name cant be empty'
+        }
+    },
     description: {
         in:['body'],
         exists: {
