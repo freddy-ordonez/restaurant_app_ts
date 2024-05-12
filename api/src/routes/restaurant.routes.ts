@@ -7,18 +7,18 @@ import {
   getRestaurants,
   updateRestaurant,
 } from "../controller/restaurant.controller";
-import { restaurantSchemaValidation } from "../validation/restaurantSchema";
+import { addRestaurantSchema, idRestaurantSchema, updateRestaurantSchema} from "../validation/restaurantSchema";
 
 const router = Router();
 
 router.get("/restaurants", getRestaurants);
-router.get("/restaurants/:id", getRestaurant);
-router.get("/restaurants/:id/address", getRestaurantAddress);
+router.get("/restaurants/:id",idRestaurantSchema, getRestaurant);
+router.get("/restaurants/:id/address", idRestaurantSchema, getRestaurantAddress);
 
-router.post("/restaurants",restaurantSchemaValidation, addRestaurant);
+router.post("/restaurants",addRestaurantSchema, addRestaurant);
 
-router.put("/restaurants/:id",restaurantSchemaValidation, updateRestaurant);
+router.put("/restaurants/:id",updateRestaurantSchema, updateRestaurant);
 
-router.delete("/restaurants/:id", deleteRestaurant);
+router.delete("/restaurants/:id", idRestaurantSchema ,deleteRestaurant);
 
 export default router;
