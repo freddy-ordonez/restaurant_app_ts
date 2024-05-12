@@ -1,8 +1,13 @@
 import express, {Router} from 'express'
 import 'dotenv/config';
+
+
 import {sequelize} from './data/connectionSqlServer'
+
+//Models
 import "./model/restaurant";
 import './model/address'
+import "./model/product"
 
 //Routes
 import restaurantRoutes from './routes/restaurant.routes';
