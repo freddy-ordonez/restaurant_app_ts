@@ -52,5 +52,5 @@ Product.init({
             key: "id"
         }
     }
-}, { sequelize, modelName: "Product" });
+}, { sequelize });
 

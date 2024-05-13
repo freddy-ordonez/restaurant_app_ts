@@ -41,7 +41,6 @@ Restaurant.init(
   },
   {
     sequelize,
-    modelName: "Restaurant",
   }
 );
 

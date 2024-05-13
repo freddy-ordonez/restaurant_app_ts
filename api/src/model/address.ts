@@ -56,8 +56,7 @@ Address.init(
     }
   },
   {
-    sequelize,
-    modelName: "Address",
+    sequelize
   }
 );
 

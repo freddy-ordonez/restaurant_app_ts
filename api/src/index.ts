@@ -8,6 +8,7 @@ import {sequelize} from './data/connectionSqlServer'
 import "./model/restaurant";
 import './model/address'
 import "./model/product"
+import "./model/user"
 
 //Routes
 import restaurantRoutes from './routes/restaurant.routes';
