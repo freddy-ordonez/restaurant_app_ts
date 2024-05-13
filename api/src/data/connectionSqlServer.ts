@@ -9,4 +9,11 @@ export const sequelize = new Sequelize(database, user, password, {
   host: "localhost",
 });
 
-
+export const connection = async () => {
+  try {
+    await sequelize.sync({force: true});
+    console.log("Connection has benn successfully");
+  } catch (error) {
+    console.error("Unable to connect to the database", error);
+  }
+}

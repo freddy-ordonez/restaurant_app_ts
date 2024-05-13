@@ -44,9 +44,10 @@ export const addUserSchema = checkSchema({
                 minLength: 8,
                 minLowercase: 1,
                 minUppercase: 1,
-                minSymbols: 1
+                minSymbols: 1,
+                minNumbers: 0
             },
-            errorMessage: "password must contain min 8 character and symbols, letters in uppercase and lowercase example 'Ironman@'"
+            errorMessage: "password must contain min 8 character and symbols, number, letters in uppercase and lowercase example 'Ironman@1'"
         }
     }
 })
