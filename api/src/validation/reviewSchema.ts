@@ -31,7 +31,7 @@ export const addReviewSchema = checkSchema({
       options: (value) => {
         return value >= 1 && value <= 5;
       },
-      errorMessage: "qualification must of between 1 and 5",
+      errorMessage: "qualification must be from 1 and 5",
     },
   },
   idRestaurant: {
@@ -55,52 +55,52 @@ export const addReviewSchema = checkSchema({
 });
 
 export const updateReviewSchema = checkSchema({
-    id: {
-        in: ["params"],
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
+  id: {
+    in: ["params"],
+    isNumeric: {
+      errorMessage: "id must be number",
     },
-    comment: {
-      in: ["body"],
-      exists: {
-        errorMessage: "comment is required",
-      },
-      isLength: {
-        options: {
-          max: 150,
-        },
-        errorMessage: "comment max 25 characters",
-      },
-      isString: {
-        errorMessage: "comment must be in string",
-      },
-      notEmpty: {
-        errorMessage: "comment cant be empty",
-      },
+  },
+  comment: {
+    in: ["body"],
+    exists: {
+      errorMessage: "comment is required",
     },
-    qualification: {
-      in: ["body"],
-      exists: {
-        errorMessage: "qualification is required",
+    isLength: {
+      options: {
+        max: 150,
       },
-      isNumeric: {
-        errorMessage: "qualification must be number",
+      errorMessage: "comment max 25 characters",
+    },
+    isString: {
+      errorMessage: "comment must be in string",
+    },
+    notEmpty: {
+      errorMessage: "comment cant be empty",
+    },
+  },
+  qualification: {
+    in: ["body"],
+    exists: {
+      errorMessage: "qualification is required",
+    },
+    isNumeric: {
+      errorMessage: "qualification must be number",
+    },
+    custom: {
+      options: (value) => {
+        return value >= 1 && value <= 5;
       },
-      custom: {
-        options: (value) => {
-          return value >= 1 && value <= 5;
-        },
-        errorMessage: "qualification must of between 1 and 5",
-      },
-    }
+      errorMessage: "qualification must be from 1 and 5",
+    },
+  },
 });
 
 export const idReviewSchema = checkSchema({
-    id: {
-        in: ["params"],
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
-    }
-})
+  id: {
+    in: ["params"],
+    isNumeric: {
+      errorMessage: "id must be number",
+    },
+  },
+});

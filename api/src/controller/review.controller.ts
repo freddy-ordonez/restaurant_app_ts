@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import Review from "../model/review";
 import { matchedData } from "express-validator";
+import Restaurant from "../model/restaurant";
+import User from "../model/user";
 
 export const getReviews = async (req: Request, res: Response) => {
   try {
@@ -19,7 +21,7 @@ export const getOneReview = async (req: Request, res: Response) => {
     const findReview = await Review.findOne({
       where: {
         id: idReview,
-      },
+      }
     });
     if (!findReview) return res.status(404).send({ message: "Not Found" });
 

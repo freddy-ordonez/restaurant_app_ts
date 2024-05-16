@@ -14,6 +14,7 @@ import restaurantRoutes from './routes/restaurant.routes';
 import addressRoutes from './routes/address.routes';
 import productRoutes from './routes/product.routes';
 import userRoutes from './routes/user.routes';
+import reviewRoutes from './routes/review.routes'
 
 //Execute the connection a database
 import "./data/connectionSqlServer"
@@ -34,6 +35,7 @@ apiRouter.use(restaurantRoutes)
 apiRouter.use(addressRoutes)
 apiRouter.use(productRoutes)
 apiRouter.use(userRoutes)
+apiRouter.use(reviewRoutes)
 
 connection()
 
