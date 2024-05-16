@@ -45,6 +45,7 @@ Review.init(
         model: User,
         key: "id",
       },
+      onDelete: "CASCADE"
     },
     idRestaurant: {
       type: DataTypes.INTEGER,
@@ -53,6 +54,7 @@ Review.init(
         model: Restaurant,
         key: "id",
       },
+      onDelete: "CASCADE"
     },
   },
   {
