@@ -60,4 +60,6 @@ Address.init(
   }
 );
 
+Address.belongsTo(Restaurant, {foreignKey: "restaurantId"})
+
 export default Address;

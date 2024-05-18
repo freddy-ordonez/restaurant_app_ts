@@ -51,8 +51,8 @@ export const addProductSchema = checkSchema({
         exists: {
             errorMessage: "idRestaurant is required"
         },
-        isNumeric: {
-            errorMessage: "idRestaurant must be number"
+        isString: {
+            errorMessage: "idRestaurant must be string"
         }
     }
 })
@@ -105,8 +105,7 @@ export const updateProductSchema = checkSchema({
         isNumeric: {
             errorMessage: "price must be number"
         }
-    }
-    
+    }  
 })
 
 export const idProductSchema = checkSchema({

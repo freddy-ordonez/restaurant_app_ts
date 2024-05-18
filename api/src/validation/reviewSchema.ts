@@ -39,17 +39,23 @@ export const addReviewSchema = checkSchema({
     exists: {
       errorMessage: "idRestaurant is required",
     },
-    isNumeric: {
-      errorMessage: "idRestaurant must be number",
+    isString: {
+      errorMessage: "idRestaurant must be string",
     },
+    notEmpty: {
+      errorMessage: "idRestaurant cant be empty",
+    }
   },
   idUser: {
     in: ["body"],
     exists: {
       errorMessage: "idUser is required",
     },
-    isNumeric: {
-      errorMessage: "idUser must be number",
+    isString: {
+      errorMessage: "idUser must be string",
+    },
+    notEmpty: {
+      errorMessage: "idUser cant be empty",
     },
   },
 });
@@ -90,7 +96,7 @@ export const updateReviewSchema = checkSchema({
       },
       errorMessage: "qualification must be from 1 and 5",
     },
-  },
+  }
 });
 
 export const idReviewSchema = checkSchema({
