@@ -1,4 +1,4 @@
-import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute } from "sequelize";
+import { CreationOptional, DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model, NonAttribute, UUIDV4 } from "sequelize";
 import {sequelize }from "../data/connectionSqlServer";
 import Restaurant from "./restaurant";
 
@@ -19,9 +19,9 @@ class Address extends Model<InferAttributes<Address>, InferCreationAttributes<Ad
 Address.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
+      type: DataTypes.UUID,
+        primaryKey:true,
+        defaultValue: UUIDV4
     },
     country: {
       type: DataTypes.STRING(25),
@@ -45,7 +45,7 @@ Address.init(
       unique: true,
     },
     restaurantId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       unique: true,
       onDelete: "CASCADE",

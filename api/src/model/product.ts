@@ -6,6 +6,7 @@ import {
   InferCreationAttributes,
   Model,
   NonAttribute,
+  UUIDV4,
 } from "sequelize";
 import Restaurant from "./restaurant";
 import { sequelize } from "../data/connectionSqlServer";
@@ -26,10 +27,9 @@ export default class Product extends Model<
 
 Product.init({
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
+        type: DataTypes.UUID,
+        primaryKey:true,
+        defaultValue: UUIDV4
     },
     name: {
         type: DataTypes.STRING(25),
@@ -44,7 +44,7 @@ Product.init({
         allowNull: false,
     },
     idRestaurant: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         onDelete: "CASCADE",
         references: {

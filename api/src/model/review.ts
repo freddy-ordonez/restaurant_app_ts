@@ -5,6 +5,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
+  UUIDV4,
 } from "sequelize";
 import User from "./user";
 import Restaurant from "./restaurant";
@@ -25,10 +26,9 @@ class Review extends Model<
 Review.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: UUIDV4,
     },
     qualification: {
       type: DataTypes.TINYINT,
@@ -39,22 +39,22 @@ Review.init(
       allowNull: false,
     },
     idUser: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: User,
         key: "id",
       },
-      onDelete: "CASCADE"
+      onDelete: "CASCADE",
     },
     idRestaurant: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: Restaurant,
         key: "id",
       },
-      onDelete: "CASCADE"
+      onDelete: "CASCADE",
     },
   },
   {

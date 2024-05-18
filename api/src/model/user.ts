@@ -4,6 +4,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
+  UUIDV4,
 } from "sequelize";
 import {sequelize} from '../data/connectionSqlServer';
 
@@ -15,9 +16,9 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
 
 User.init({
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey:true
+        type: DataTypes.UUID,
+        primaryKey:true,
+        defaultValue: UUIDV4
     },
     email: {
         type: DataTypes.STRING(100),

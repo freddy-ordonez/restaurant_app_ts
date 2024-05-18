@@ -3,7 +3,8 @@ import {
   Model,
   InferAttributes,
   InferCreationAttributes,
-  CreationOptional
+  CreationOptional,
+  UUIDV4,
 } from "sequelize";
 import { sequelize } from "../data/connectionSqlServer";
 import Address from "./address";
@@ -21,9 +22,9 @@ class Restaurant extends Model<
 Restaurant.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
       primaryKey: true,
+      defaultValue: UUIDV4,
     },
     name: {
       type: DataTypes.STRING(50),

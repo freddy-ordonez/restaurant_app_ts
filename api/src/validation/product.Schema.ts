@@ -59,13 +59,7 @@ export const addProductSchema = checkSchema({
 
 export const updateProductSchema = checkSchema({
     id: {
-        in:["params"],
-        exists: {
-            errorMessage: "name is required"
-        },
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
+        in:["params"]
     },
     name: {
         in:['body'],
@@ -117,12 +111,6 @@ export const updateProductSchema = checkSchema({
 
 export const idProductSchema = checkSchema({
     id: {
-        in:["params"],
-        exists: {
-            errorMessage: "name is required"
-        },
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
+        in:["params"]
     }
 })

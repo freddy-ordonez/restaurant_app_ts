@@ -56,10 +56,7 @@ export const addReviewSchema = checkSchema({
 
 export const updateReviewSchema = checkSchema({
   id: {
-    in: ["params"],
-    isNumeric: {
-      errorMessage: "id must be number",
-    },
+    in: ["params"]
   },
   comment: {
     in: ["body"],
@@ -98,9 +95,6 @@ export const updateReviewSchema = checkSchema({
 
 export const idReviewSchema = checkSchema({
   id: {
-    in: ["params"],
-    isNumeric: {
-      errorMessage: "id must be number",
-    },
+    in: ["params"]
   },
 });

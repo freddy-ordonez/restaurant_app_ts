@@ -54,10 +54,7 @@ export const addUserSchema = checkSchema({
 
 export const updateUserSchema = checkSchema({
     id: {
-        in: ['params'],
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
+        in: ['params']
     },
     email: {
         in:['body'],
@@ -111,9 +108,6 @@ export const updateUserSchema = checkSchema({
 
 export const idUserSchema = checkSchema({
     id: {
-        in: ['params'],
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
+        in: ['params']
     }
 })

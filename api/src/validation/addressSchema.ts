@@ -102,9 +102,6 @@ export const addAddressSchema = checkSchema({
 export const updateAddressSchema = checkSchema({
   id: {
     in: ["params"],
-    isNumeric: {
-        errorMessage: "id param must be number"
-    }
   },
   country: {
     notEmpty: {
@@ -198,9 +195,6 @@ export const updateAddressSchema = checkSchema({
 
 export const idAddressSchema = checkSchema({
     id: {
-        in: ["params"],
-        isNumeric: {
-            errorMessage: "id param must be number"
-        }
+        in: ["params"]
     }
 })

@@ -50,10 +50,7 @@ export const addRestaurantSchema = checkSchema({
 
 export const updateRestaurantSchema = checkSchema({
     id: {
-        in: ["params"],
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
+        in: ["params"]
     },
     name: {
         in:['body'],
@@ -104,9 +101,6 @@ export const updateRestaurantSchema = checkSchema({
 
 export const idRestaurantSchema = checkSchema({
     id: {
-        in: ["params"],
-        isNumeric: {
-            errorMessage: "id must be number"
-        }
+        in: ["params"]
     }
 })
