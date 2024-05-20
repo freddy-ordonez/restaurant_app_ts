@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { matchedData } from "express-validator";
 import User from "../model/user";
 import { UserToken, signToken } from "../utils/jwt";
-import Restaurant from "../model/restaurant";
 
 export const addAuthenticateUser = async (req: Request, res: Response)=>  {
     const {email, password} = matchedData(req)
