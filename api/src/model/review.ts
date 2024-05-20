@@ -68,4 +68,27 @@ Review.init(
   }
 );
 
+Restaurant.hasMany(Review, {
+  sourceKey: "id",
+  foreignKey: "idRestaurant",
+  as: "reviews"
+})
+Review.belongsTo(Restaurant, {
+  targetKey: "id",
+  foreignKey: "idRestaurant",
+  as: 'restaurant'
+})
+
+User.hasMany(Review, {
+  sourceKey: "id",
+  foreignKey: "idUser",
+  as: "reviews"
+})
+
+Review.belongsTo(User, {
+  targetKey: "id",
+  foreignKey: "idUser",
+  as: "user"
+})
+
 export default Review;

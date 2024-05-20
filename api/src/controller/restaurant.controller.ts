@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import RestaurantModel from "../model/restaurant";
 import Address from "../model/address";
-import { Result, matchedData, validationResult } from "express-validator";
+import { matchedData } from "express-validator";
+import Restaurant from "../model/restaurant";
 
 export const getRestaurants = async (req: Request, res: Response) => {
   try {
@@ -20,7 +21,7 @@ export const getRestaurant = async (req: Request, res: Response) => {
     const restaurant = await RestaurantModel.findOne({
       where: {
         id: idRestaurant,
-      },
+      }
     });
     if (!restaurant) return res.status(404).send({ message: "Not found" });
 
@@ -33,10 +34,14 @@ export const getRestaurantAddress = async (req: Request, res: Response) => {
   const {id:restaurantId} = matchedData(req);
 
   try {
-    const address = await Address.findOne({
+    const address = await Restaurant.findOne({
       where: {
-        restaurantId: restaurantId,
+        id: restaurantId,
       },
+      include: [{
+        model:Address,
+        as: "address"
+      }]
     });
     if (!address) return res.status(404).send({ message: "Not Found" });
     return res.status(200).json(address);

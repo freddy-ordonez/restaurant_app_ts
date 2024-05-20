@@ -2,13 +2,6 @@
 import express, {Router} from 'express'
 import 'dotenv/config';
 
-//Models
-import "./model/restaurant";
-import './model/address'
-import "./model/product"
-import "./model/user"
-import "./model/review"
-
 //Import Routes
 import restaurantRoutes from './routes/restaurant.routes';
 import addressRoutes from './routes/address.routes';

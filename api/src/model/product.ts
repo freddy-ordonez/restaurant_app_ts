@@ -54,3 +54,14 @@ Product.init({
     }
 }, { sequelize });
 
+Restaurant.hasMany(Product, {
+    sourceKey:"id",
+    foreignKey: "idRestaurant",
+    as: "products"
+  })
+  Product.belongsTo(Restaurant, {
+    targetKey:"id",
+    foreignKey: "idRestaurant",
+    as: "restaurant"
+  })
+

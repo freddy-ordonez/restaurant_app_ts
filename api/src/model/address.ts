@@ -60,6 +60,15 @@ Address.init(
   }
 );
 
-Address.belongsTo(Restaurant, {foreignKey: "restaurantId"})
+Restaurant.hasOne(Address, {
+  sourceKey: "id",
+  foreignKey: "restaurantId",
+  as: "address",
+});
+Address.belongsTo(Restaurant, {
+  targetKey: "id",
+  foreignKey: "restaurantId",
+  as: "restaurant"
+})
 
 export default Address;

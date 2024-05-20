@@ -8,6 +8,7 @@ import {
 } from "sequelize";
 import { sequelize } from "../data/connectionSqlServer";
 import Address from "./address";
+import Product from "./product";
 
 class Restaurant extends Model<
   InferAttributes<Restaurant>,
@@ -44,5 +45,4 @@ Restaurant.init(
     sequelize,
   }
 );
-
 export default Restaurant;
