@@ -8,6 +8,7 @@ import addressRoutes from './routes/address.routes';
 import productRoutes from './routes/product.routes';
 import userRoutes from './routes/user.routes';
 import reviewRoutes from './routes/review.routes'
+import authenticateRoutes from "./routes/authenticate.routes"
 
 //Execute the connection a database
 import "./data/connectionSqlServer"
@@ -29,6 +30,7 @@ apiRouter.use(addressRoutes)
 apiRouter.use(productRoutes)
 apiRouter.use(userRoutes)
 apiRouter.use(reviewRoutes)
+apiRouter.use(authenticateRoutes)
 
 connection()
 

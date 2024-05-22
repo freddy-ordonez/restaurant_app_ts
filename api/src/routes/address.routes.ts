@@ -1,17 +1,17 @@
 import {Router} from 'express';
 import { addAddress, deleteAddress, getAddress, getOneAddress, updateAddress } from '../controller/address.controller';
 import { addAddressSchema, idAddressSchema, updateAddressSchema } from '../validation/addressSchema';
-import { validacionSchemas } from '../middleware/middleware';
+import { validationSchemas } from '../middleware/middleware';
 
 const router = Router()
 
 router.get("/addresses", getAddress)
-router.get("/addresses/:id",idAddressSchema,validacionSchemas, getOneAddress)
+router.get("/addresses/:id",idAddressSchema,validationSchemas, getOneAddress)
 
-router.post('/addresses', addAddressSchema,validacionSchemas, addAddress)
+router.post('/addresses', addAddressSchema,validationSchemas, addAddress)
 
-router.put('/addresses/:id',updateAddressSchema,validacionSchemas, updateAddress)
-router.delete("/addresses/:id", idAddressSchema,validacionSchemas, deleteAddress)
+router.put('/addresses/:id',updateAddressSchema,validationSchemas, updateAddress)
+router.delete("/addresses/:id", idAddressSchema,validationSchemas, deleteAddress)
 
 export default router;
 

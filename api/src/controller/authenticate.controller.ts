@@ -4,7 +4,7 @@ import User from "../model/user";
 import { UserToken, signToken } from "../utils/jwt";
 
 export const addAuthenticateUser = async (req: Request, res: Response)=>  {
-    const {email, password} = matchedData(req)
+    const {email, password} = req.body
     try {
         const findUser = await User.findOne({
             where: {
@@ -21,5 +21,7 @@ export const addAuthenticateUser = async (req: Request, res: Response)=>  {
         return res.status(200).send({token})
     } catch (error) {
         return res.status(500).send({message: error})
+        console.log("error");
+        
     }
 }

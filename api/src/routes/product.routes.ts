@@ -7,17 +7,17 @@ import {
   updateProduct,
 } from "../controller/product.controller";
 import { addProductSchema, idProductSchema, updateProductSchema } from "../validation/product.Schema";
-import { validacionSchemas } from "../middleware/middleware";
+import { validationSchemas } from "../middleware/middleware";
 
 const router = Router();
 
 router.get("/products", getProducts);
-router.get("/products/:id",idProductSchema, validacionSchemas, getOneProduct);
+router.get("/products/:id",idProductSchema, validationSchemas, getOneProduct);
 
-router.post("/products",addProductSchema, validacionSchemas, addProduct);
+router.post("/products",addProductSchema, validationSchemas, addProduct);
 
-router.put("/products/:id",updateProductSchema, validacionSchemas, updateProduct);
+router.put("/products/:id",updateProductSchema, validationSchemas, updateProduct);
 
-router.delete("/products/:id",idProductSchema, validacionSchemas, deleteProduct);
+router.delete("/products/:id",idProductSchema, validationSchemas, deleteProduct);
 
 export default router;

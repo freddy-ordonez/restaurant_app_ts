@@ -11,17 +11,17 @@ import {
   idReviewSchema,
   updateReviewSchema,
 } from "../validation/reviewSchema";
-import { validacionSchemas } from "../middleware/middleware";
+import { validationSchemas } from "../middleware/middleware";
 
 const router = Router();
 
 router.get("/reviews", getReviews);
-router.get("/reviews/:id", idReviewSchema, validacionSchemas, getOneReview);
+router.get("/reviews/:id", idReviewSchema, validationSchemas, getOneReview);
 
-router.post("/reviews", addReviewSchema, validacionSchemas, addReview);
+router.post("/reviews", addReviewSchema, validationSchemas, addReview);
 
-router.put("/reviews/:id", updateReviewSchema, validacionSchemas, updateReview);
+router.put("/reviews/:id", updateReviewSchema, validationSchemas, updateReview);
 
-router.delete("/reviews/:id", idReviewSchema, validacionSchemas, deleteReview);
+router.delete("/reviews/:id", idReviewSchema, validationSchemas, deleteReview);
 
 export default router;
